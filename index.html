@@ -365,48 +365,78 @@
     return SHEETS_WEBAPP_URL && !SHEETS_WEBAPP_URL.includes('PASTE_YOUR_WEB_APP_URL');
   }
 
-  async function backendGetAll(){
-    if (!backendReady()) return {};
-    const url = new URL(SHEETS_WEBAPP_URL);
-    url.searchParams.set('action','all');
-    if (API_KEY) url.searchParams.set('key', API_KEY);
-    const res = await fetch(url.toString(), { method:'GET' });
-    if (!res.ok) throw new Error('Could not load results from Sheets');
-    return await res.json();
-  }
+async function backendGetAll(){
+  if (!backendReady()) return {};
+  const url = new URL(SHEETS_WEBAPP_URL);
+  url.searchParams.set('action','dump'); // ✅ was "all"
+  if (API_KEY) url.searchParams.set('key', API_KEY);
 
-  async function backendUpsert(matchKey, payload){
-    if (!backendReady()) throw new Error('Sheets backend not configured');
-    const res = await fetch(SHEETS_WEBAPP_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'upsert', key: API_KEY || undefined, matchKey, ...payload })
-    });
-    if (!res.ok) throw new Error('Could not save result to Sheets');
-    return await res.json();
-  }
+  const res = await fetch(url.toString(), { method:'GET' });
+  if (!res.ok) throw new Error('Could not load results from Sheets');
 
-  async function backendDelete(matchKey){
-    if (!backendReady()) throw new Error('Sheets backend not configured');
-    const res = await fetch(SHEETS_WEBAPP_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'delete', key: API_KEY || undefined, matchKey })
-    });
-    if (!res.ok) throw new Error('Could not delete result from Sheets');
-    return await res.json();
-  }
+  const data = await res.json();
 
-  async function backendResetAll(){
-    if (!backendReady()) throw new Error('Sheets backend not configured');
-    const res = await fetch(SHEETS_WEBAPP_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'reset', key: API_KEY || undefined })
-    });
-    if (!res.ok) throw new Error('Could not reset results in Sheets');
-    return await res.json();
-  }
+  // Our Apps Script returns { ok:true, approved:{...}, pending:[...] }
+  if (!data || data.ok !== true) throw new Error(data?.error || 'Sheets returned an error');
+
+  return data.approved || {}; // ✅ approved results object
+}
+
+async function backendUpsert(matchKey, payload){
+  if (!backendReady()) throw new Error('Sheets backend not configured');
+  const res = await fetch(SHEETS_WEBAPP_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      action:'upsertApproved',   // ✅ was "upsert"
+      key: API_KEY || undefined,
+      matchKey,
+      record: {
+        type: 'regular',
+        a: payload.a,
+        b: payload.b,
+        aSets: payload.aSets,
+        bSets: payload.bSets,
+        pairs: payload.pairs || [],
+        ts: payload.ts || Date.now()
+      }
+    })
+  });
+  const data = await res.json().catch(()=>null);
+  if (!res.ok || (data && data.ok === false)) throw new Error(data?.error || 'Could not save result to Sheets');
+  return data;
+}
+
+async function backendDelete(matchKey){
+  if (!backendReady()) throw new Error('Sheets backend not configured');
+  const res = await fetch(SHEETS_WEBAPP_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      action:'deleteApproved',   // ✅ was "delete"
+      key: API_KEY || undefined,
+      matchKey
+    })
+  });
+  const data = await res.json().catch(()=>null);
+  if (!res.ok || (data && data.ok === false)) throw new Error(data?.error || 'Could not delete result from Sheets');
+  return data;
+}
+
+async function backendResetAll(){
+  if (!backendReady()) throw new Error('Sheets backend not configured');
+  const res = await fetch(SHEETS_WEBAPP_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      action:'resetApproved',    // ✅ was "reset"
+      key: API_KEY || undefined
+    })
+  });
+  const data = await res.json().catch(()=>null);
+  if (!res.ok || (data && data.ok === false)) throw new Error(data?.error || 'Could not reset results in Sheets');
+  return data;
+}
 
   // -----------------------------
   // Scoring
