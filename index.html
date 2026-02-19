@@ -1,0 +1,1087 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Thursday Night Competition — Autumn 2026&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--bg:#0b1020; --card:#121a33; --muted:#93a4c7; --text:#e9eeff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--accent:#7dd3fc; --accent2:#a78bfa; --good:#34d399; --warn:#fbbf24; --bad:#fb7185;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--border:rgba(255,255,255,.10);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--shadow: 0 10px 30px rgba(0,0,0,.35);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(1200px 600px at 20% -10%, rgba(125,211,252,.25), transparent 60%),</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>radial-gradient(900px 500px at 90% 0%, rgba(167,139,250,.22), transparent 55%),</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>var(--bg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color:var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>a{color:inherit}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,16,32,.75); border-bottom:1px solid var(--border); z-index:10}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.wrap{max-width:1100px; margin:0 auto; padding:18px 18px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.top{display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:wrap}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.brand{display:flex; align-items:center; gap:12px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.logo{width:40px; height:40px; border-radius:12px; background: linear-gradient(135deg, rgba(125,211,252,.9), rgba(167,139,250,.9)); box-shadow: var(--shadow)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1{font-size:18px; margin:0}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.sub{font-size:12px; color:var(--muted); margin-top:2px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>nav{display:flex; gap:8px; flex-wrap:wrap}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab{border:1px solid var(--border); background: rgba(18,26,51,.65); color:var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:10px 12px; border-radius:999px; cursor:pointer; font-size:13px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab[aria-selected="true"]{border-color: rgba(125,211,252,.55); background: rgba(125,211,252,.12)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>main{padding:18px 0 60px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid{display:grid; gap:14px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid.two{grid-template-columns: 1.2fr .8fr}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 900px){.grid.two{grid-template-columns:1fr}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card{background: rgba(18,26,51,.75); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card .hd{padding:14px 14px 0}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card .bd{padding:14px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.title{font-size:16px; margin:0 0 6px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.muted{color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.pill{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:7px 10px; border-radius:999px; font-size:12px; color:var(--muted)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:14px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>th,td{padding:10px 10px; border-bottom:1px solid var(--border); text-align:left; font-size:13px; vertical-align:top}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>th{font-size:12px; color:var(--muted); font-weight:600}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>tr:hover td{background: rgba(255,255,255,.03)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.right{text-align:right}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.center{text-align:center}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kpi{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 760px){.kpi{grid-template-columns:repeat(2,1fr)}}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.k{padding:12px; border:1px solid var(--border); border-radius:14px; background: rgba(255,255,255,.03)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.k .n{font-size:20px; font-weight:800}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.k .l{font-size:12px; color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn{border:1px solid var(--border); background: rgba(255,255,255,.04); color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer; font-size:13px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn.primary{border-color: rgba(125,211,252,.55); background: rgba(125,211,252,.14)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn.danger{border-color: rgba(251,113,133,.55); background: rgba(251,113,133,.10)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn:disabled{opacity:.5; cursor:not-allowed}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>select,input{background: rgba(11,16,32,.65); border:1px solid var(--border); color:var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding:10px 12px; border-radius:12px; font-size:13px; outline:none</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input[type="number"]{width:92px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hint{font-size:12px; color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.badge{display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--border); color:var(--muted)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.badge.good{border-color: rgba(52,211,153,.45); color: rgba(52,211,153,.95)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.badge.warn{border-color: rgba(251,191,36,.45); color: rgba(251,191,36,.95)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.badge.bad{border-color: rgba(251,113,133,.45); color: rgba(251,113,133,.95)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.foot{margin-top:10px; font-size:12px; color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* modal */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>dialog{border:none; border-radius:18px; padding:0; background: rgba(18,26,51,.98); color:var(--text); width:min(640px, 92vw); box-shadow: var(--shadow)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>dialog::backdrop{background: rgba(0,0,0,.55)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-hd{padding:14px 14px 0}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-bd{padding:14px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.modal-ft{padding:0 14px 14px; display:flex; justify-content:flex-end; gap:10px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media print{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>header{position:static; background:#fff; color:#000; border:none}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body{background:#fff; color:#000}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.card{box-shadow:none; background:#fff; border:1px solid #ccc}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.tab, .btn, .pill{display:none}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a{color:#000}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="wrap top"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="brand"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="logo" aria-hidden="true"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1&gt;Thursday Night Competition&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="sub"&gt;Autumn 2026 • 7 teams • 14 rounds • 3-week break in April&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;nav aria-label="Sections"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="home" aria-selected="true"&gt;Home&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="teams"&gt;Teams&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="fixtures"&gt;Fixtures&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="ladder"&gt;Ladder&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="finals"&gt;Finals&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="rules"&gt;Rules&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab" data-view="results"&gt;Enter Results&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-home" class="view"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid two"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h2 class="title"&gt;Next Round&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="pill"&gt;&lt;span class="dot"&gt;&lt;/span&gt;&lt;span id="nextRoundPill"&gt;Loading…&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="muted" id="nextRoundDate" style="margin-top:4px"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="nextRoundMatches"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="foot"&gt;Tip: results are stored in your browser (localStorage). If you want a shared site later, we can wire this to Google Sheets or a tiny database.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Quick Stats&lt;/h2&gt;&lt;div class="muted"&gt;Auto-updates as you enter results&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="k"&gt;&lt;div class="n" id="kpiRoundsDone"&gt;0&lt;/div&gt;&lt;div class="l"&gt;Rounds completed&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="k"&gt;&lt;div class="n" id="kpiMatchesDone"&gt;0&lt;/div&gt;&lt;div class="l"&gt;Matches recorded&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="k"&gt;&lt;div class="n" id="kpiTopTeam"&gt;—&lt;/div&gt;&lt;div class="l"&gt;Current leader&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="k"&gt;&lt;div class="n" id="kpiMostSets"&gt;—&lt;/div&gt;&lt;div class="l"&gt;Most sets won&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="margin-top:12px" class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn primary" id="btnPrint"&gt;Print schedule&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn" id="btnExport"&gt;Export results (JSON)&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;label class="btn" for="importFile" style="cursor:pointer"&gt;Import results&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;input id="importFile" type="file" accept="application/json" style="display:none" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card" style="margin-top:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Latest Results&lt;/h2&gt;&lt;div class="muted"&gt;Most recent recorded matches&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd" id="latestResults"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-teams" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Teams &amp; Players&lt;/h2&gt;&lt;div class="muted"&gt;4 players per team&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd" id="teamsGrid"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-fixtures" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h2 class="title"&gt;Fixtures&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted"&gt;Rounds 1–14 + 3-week break&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="hint"&gt;Jump to round:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;select id="roundJump"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn" id="btnGo"&gt;Go&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd" id="fixturesList"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-ladder" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Ladder&lt;/h2&gt;&lt;div class="muted"&gt;Points = sets won + 2 bonus points if you win the night&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="justify-content:space-between; margin-bottom:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="hint"&gt;Tie-breakers (in order): Points, Set Differential, Sets Won, Team #&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn danger" id="btnReset"&gt;Reset all results&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div id="ladderTable"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="foot"&gt;Note: if a night is tied 3–3, both teams get 3 points and &lt;b&gt;no&lt;/b&gt; bonus points (unless you tell me otherwise).&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-finals" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid two"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Finals Bracket&lt;/h2&gt;&lt;div class="muted"&gt;Based on ladder positions after Round 14&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd" id="finalsBracket"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Finals Dates&lt;/h2&gt;&lt;div class="muted"&gt;As per the board&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Match&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;td&gt;Elimination&lt;/td&gt;&lt;td&gt;04-Jun-26&lt;/td&gt;&lt;td&gt;3rd vs 4th&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;td&gt;Qualifying&lt;/td&gt;&lt;td&gt;04-Jun-26&lt;/td&gt;&lt;td&gt;1st vs 2nd&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;td&gt;Preliminary&lt;/td&gt;&lt;td&gt;11-Jun-26&lt;/td&gt;&lt;td&gt;Loser (1v2) vs Winner (3v4)&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;td&gt;Grand Final&lt;/td&gt;&lt;td&gt;18-Jun-26&lt;/td&gt;&lt;td&gt;Winner (1v2) vs Winner (Prelim)&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="foot"&gt;If you want, I can add automatic finals results entry too (same 6-set scoring).&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-rules" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Rules&lt;/h2&gt;&lt;div class="muted"&gt;As you described&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul style="margin:0; padding-left:18px; line-height:1.55"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Each round: &lt;b&gt;two teams play 6 sets of doubles&lt;/b&gt;.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Matchups are &lt;b&gt;paired by player numbers&lt;/b&gt;: &lt;b&gt;1&amp;2 vs 1&amp;2&lt;/b&gt;, &lt;b&gt;3&amp;4 vs 3&amp;4&lt;/b&gt;, etc (total 6 sets).&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Each set is &lt;b&gt;first to 6 games&lt;/b&gt; (no super-tiebreak rules specified here).&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Team points for the night:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;b&gt;1 point per set won&lt;/b&gt; (0–6 points)&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;b&gt;+2 bonus points&lt;/b&gt; if your team wins the night (i.e., wins more sets overall)&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Example: if Team 4 beats Team 2 &lt;b&gt;4 sets to 2&lt;/b&gt;, then Team 4 gets &lt;b&gt;6 points&lt;/b&gt; and Team 2 gets &lt;b&gt;2 points&lt;/b&gt;.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Assumption: if tied &lt;b&gt;3–3&lt;/b&gt;, both teams get &lt;b&gt;3 points&lt;/b&gt; and &lt;b&gt;no&lt;/b&gt; bonus points.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="foot"&gt;Want me to add extra rules (warm-up time, default scores, subs, rain-outs)? Just tell me and I’ll add a section.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="view-results" class="view" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hd"&gt;&lt;h2 class="title"&gt;Enter Results&lt;/h2&gt;&lt;div class="muted"&gt;Record sets won for each match (0–6). Points calculate automatically.&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="margin-bottom:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="hint"&gt;Round:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="roundSelect"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="hint"&gt;Match:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="matchSelect"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn primary" id="btnEdit"&gt;Edit / Enter&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div id="resultSummary"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="foot"&gt;This is a simple offline-first setup. If you want everyone to submit results, we can connect this to Google Sheets and share a link.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;dialog id="resultModal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-hd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="badge" id="modalRoundBadge"&gt;Round&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3 class="title" id="modalTitle" style="margin-top:8px"&gt;Match&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="muted" id="modalSub"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn" id="btnClose"&gt;Close&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="row" style="align-items:flex-end; justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="flex:1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hint"&gt;Sets won (0–6)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="margin-top:8px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hint" id="aLabel"&gt;Team A&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;input type="number" id="aSets" min="0" max="6" step="1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hint" id="bLabel"&gt;Team B&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;input type="number" id="bSets" min="0" max="6" step="1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hint" style="margin-top:8px"&gt;The two values should sum to &lt;b&gt;6&lt;/b&gt;. If they don’t, we’ll still save it, but it’ll show a warning.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="min-width:210px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hint"&gt;Calculated points&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="margin-top:8px" id="calcPoints"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top:12px" id="sumWarning"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-ft"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn danger" id="btnDelete"&gt;Delete result&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn primary" id="btnSave"&gt;Save&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/dialog&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// CONFIG — Google Sheets backend</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// 1) Create a Google Sheet</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// 2) Deploy the Apps Script (provided in chat) as a Web App</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// 3) Paste the Web App URL below</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// 4) (Optional) Set an API key (must match Apps Script)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz5gZx8MrqS7eqoQipHEsFfYMIiblAVqsASgbBe4bNfPXlbZkNNyfnrEM6yym8QJMbT/exec';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const API_KEY = ''; // optional</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Data (Teams, Fixtures)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const teams = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>1: { name: 'Team 1', players: ['Cooper Khalil','Simran Chawla','David Sutton','Chris Maniatakis'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>2: { name: 'Team 2', players: ['Enrique Lopez','Craig Kitner','Josh Bury','Varun Sridhara'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>3: { name: 'Team 3', players: ['Michael Rominger','David Ng','Cameron Rush','Alan Chumacero'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>4: { name: 'Team 4', players: ['Jonathan Rogers','Rafa Bouzinelos','David Thurmond','Andrew Watson'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>5: { name: 'Team 5', players: ['Chung Tan','Huss Shafai','Tom Maloney','Brett Kurz'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>6: { name: 'Team 6', players: ['Vignesh Pakkiam','Eric Castricum','Stephen Saunders','Mark Findlay'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>7: { name: 'Team 7', players: ['Chris Scott','Justin Hermann','Nick Teo','Dishit Devasia'] },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const rounds = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:1,<span class="Apple-converted-space">  </span>date:'05-Feb-26', matches:[[1,6],[2,5],[3,4],[7,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:2,<span class="Apple-converted-space">  </span>date:'12-Feb-26', matches:[[4,2],[5,1],[6,7],[3,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:3,<span class="Apple-converted-space">  </span>date:'19-Feb-26', matches:[[2,7],[3,6],[4,5],[1,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:4,<span class="Apple-converted-space">  </span>date:'26-Feb-26', matches:[[5,3],[6,2],[7,1],[4,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:5,<span class="Apple-converted-space">  </span>date:'05-Mar-26', matches:[[3,1],[4,7],[5,6],[2,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:6,<span class="Apple-converted-space">  </span>date:'12-Mar-26', matches:[[6,4],[7,3],[1,2],[5,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:7,<span class="Apple-converted-space">  </span>date:'19-Mar-26', matches:[[7,5],[1,4],[2,3],[6,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:8,<span class="Apple-converted-space">  </span>date:'26-Mar-26', matches:[[1,6],[2,5],[3,4],[7,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:9,<span class="Apple-converted-space">  </span>date:'23-Apr-26', matches:[[4,2],[5,1],[6,7],[3,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:10, date:'30-Apr-26', matches:[[2,7],[3,6],[4,5],[1,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:11, date:'07-May-26', matches:[[5,3],[6,2],[7,1],[4,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:12, date:'14-May-26', matches:[[3,1],[4,7],[5,6],[2,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:13, date:'21-May-26', matches:[[6,4],[7,3],[1,2],[5,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ r:14, date:'28-May-26', matches:[[7,5],[1,4],[2,3],[6,null]] },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const breaks = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date:'02-Apr-26', note:'No play (break)' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date:'09-Apr-26', note:'No play (break)' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date:'16-Apr-26', note:'No play (break)' },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Backend I/O (Google Sheets)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// results shape:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// <span class="Apple-converted-space">  </span>"r1_m0": {a:1,b:6,aSets:4,bSets:2, ts: 171...},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let RESULTS = {};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function backendReady(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return SHEETS_WEBAPP_URL &amp;&amp; !SHEETS_WEBAPP_URL.includes('PASTE_YOUR_WEB_APP_URL');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function backendGetAll(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!backendReady()) return {};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const url = new URL(SHEETS_WEBAPP_URL);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url.searchParams.set('action','all');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (API_KEY) url.searchParams.set('key', API_KEY);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res = await fetch(url.toString(), { method:'GET' });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!res.ok) throw new Error('Could not load results from Sheets');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return await res.json();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function backendUpsert(matchKey, payload){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!backendReady()) throw new Error('Sheets backend not configured');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res = await fetch(SHEETS_WEBAPP_URL, {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method:'POST',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers:{'Content-Type':'application/json'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body: JSON.stringify({ action:'upsert', key: API_KEY || undefined, matchKey, ...payload })</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!res.ok) throw new Error('Could not save result to Sheets');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return await res.json();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function backendDelete(matchKey){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!backendReady()) throw new Error('Sheets backend not configured');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res = await fetch(SHEETS_WEBAPP_URL, {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method:'POST',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers:{'Content-Type':'application/json'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body: JSON.stringify({ action:'delete', key: API_KEY || undefined, matchKey })</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!res.ok) throw new Error('Could not delete result from Sheets');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return await res.json();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function backendResetAll(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!backendReady()) throw new Error('Sheets backend not configured');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res = await fetch(SHEETS_WEBAPP_URL, {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method:'POST',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers:{'Content-Type':'application/json'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body: JSON.stringify({ action:'reset', key: API_KEY || undefined })</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!res.ok) throw new Error('Could not reset results in Sheets');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return await res.json();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Scoring</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Tie rule confirmed: NO bonus for ties.</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function calcNightPoints(aSets, bSets){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>aSets = Number(aSets); bSets = Number(bSets);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let aPts = aSets;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let bPts = bSets;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (aSets &gt; bSets) aPts += 2;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>else if (bSets &gt; aSets) bPts += 2;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return { aPts, bPts };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function teamLabel(id){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (id == null) return 'Bye';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return teams[id]?.name ?? `Team ${id}`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Ladder calculation</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function buildLadder(results){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const base = {};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const id of Object.keys(teams)){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>base[id] = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>teamId: Number(id),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>played: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>points: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setsWon: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setsLost: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>bonusWins: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>nightsWon: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>nightsLost: 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>nightsTied: 0,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const k of Object.keys(results)){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const m = results[k];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!m || m.a == null || m.b == null) continue; // ignore byes</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const A = base[m.a];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const B = base[m.b];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!A || !B) continue;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const aSets = Number(m.aSets);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const bSets = Number(m.bSets);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>A.played += 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>B.played += 1;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>A.setsWon += aSets;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>A.setsLost += bSets;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>B.setsWon += bSets;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>B.setsLost += aSets;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const {aPts, bPts} = calcNightPoints(aSets, bSets);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>A.points += aPts;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>B.points += bPts;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (aSets &gt; bSets){ A.bonusWins += 1; A.nightsWon += 1; B.nightsLost += 1; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else if (bSets &gt; aSets){ B.bonusWins += 1; B.nightsWon += 1; A.nightsLost += 1; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else { A.nightsTied += 1; B.nightsTied += 1; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const rows = Object.values(base);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rows.sort((x,y)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const dx = y.points - x.points; if (dx) return dx;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const sd = (y.setsWon - y.setsLost) - (x.setsWon - x.setsLost); if (sd) return sd;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const sw = y.setsWon - x.setsWon; if (sw) return sw;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return x.teamId - y.teamId;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>return rows;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// UI helpers</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const $ = (sel)=&gt;document.querySelector(sel);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const $$ = (sel)=&gt;Array.from(document.querySelectorAll(sel));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function matchId(roundNum, matchIndex){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return `r${roundNum}_m${matchIndex}`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderTeams(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const host = $('#teamsGrid');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ids = Object.keys(teams).map(Number).sort((a,b)=&gt;a-b);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid" style="grid-template-columns:repeat(2,1fr); gap:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>${ids.map(id=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const t = teams[id];</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card" style="background:rgba(255,255,255,.03); border-radius:14px; box-shadow:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="row" style="justify-content:space-between; align-items:flex-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="badge"&gt;#${id}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="title" style="margin:8px 0 0"&gt;${t.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="margin-top:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>${t.players.map((p,i)=&gt;`&lt;div class="row" style="justify-content:space-between"&gt;&lt;span class="muted"&gt;Player ${i+1}&lt;/span&gt;&lt;span&gt;${p}&lt;/span&gt;&lt;/div&gt;`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderFixtures(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const results = RESULTS;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const host = $('#fixturesList');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.innerHTML = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const breakCard = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card" style="background:rgba(255,255,255,.03); box-shadow:none; border-radius:14px; margin-bottom:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="badge warn"&gt;3-week break&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted" style="margin-top:6px"&gt;No play: ${breaks.map(b=&gt;b.date).join(' • ')}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.insertAdjacentHTML('beforeend', breakCard);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const round of rounds){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const rows = round.matches.map((m,idx)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const [a,b] = m;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (b == null){</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return `&lt;tr&gt;&lt;td&gt;${teamLabel(a)}&lt;/td&gt;&lt;td class="center"&gt;—&lt;/td&gt;&lt;td&gt;Bye&lt;/td&gt;&lt;td class="right"&gt;&lt;span class="muted"&gt;—&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const id = matchId(round.r, idx);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const res = results[id];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const has = !!res;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const summary = has ? `${res.aSets}–${res.bSets}` : '—';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let badge = `&lt;span class="badge"&gt;Not played&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (has){</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const sum = Number(res.aSets)+Number(res.bSets);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (sum !== 6) badge = `&lt;span class="badge warn"&gt;Saved (check)&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else badge = `&lt;span class="badge good"&gt;Recorded&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return `</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${teamLabel(a)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td class="center"&gt;vs&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${teamLabel(b)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td class="right"&gt;${badge} &lt;span class="muted" style="margin-left:8px"&gt;${summary}&lt;/span&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}).join('');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>host.insertAdjacentHTML('beforeend', `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" id="round-${round.r}" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px; margin-bottom:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between; margin-bottom:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="badge"&gt;Round ${round.r}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="muted" style="margin-top:6px"&gt;${round.date}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn" data-open-round="${round.r}"&gt;Enter results&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Home&lt;/th&gt;&lt;th class="center"&gt;&lt;/th&gt;&lt;th&gt;Away&lt;/th&gt;&lt;th class="right"&gt;Result&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;tbody&gt;${rows}&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$$('[data-open-round]').forEach(btn=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const r = Number(btn.getAttribute('data-open-round'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setView('results');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('#roundSelect').value = String(r);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>populateMatchSelect();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderLadder(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ladder = buildLadder(RESULTS);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const host = $('#ladderTable');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;#&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;Team&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;P&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Pts&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Sets W&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Sets L&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Set Diff&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Nights W&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th class="right"&gt;Nights L&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>${ladder.map((row,idx)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const diff = row.setsWon - row.setsLost;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return `</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${idx+1}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;${teams[row.teamId].name}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${row.played}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;&lt;b&gt;${row.points}&lt;/b&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${row.setsWon}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${row.setsLost}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${diff}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${row.nightsWon}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;${row.nightsLost}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// KPIs</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const allRes = Object.values(RESULTS);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const matchCount = allRes.filter(m=&gt;m &amp;&amp; m.a!=null &amp;&amp; m.b!=null).length;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const roundsDone = new Set(Object.keys(RESULTS).map(k=&gt;k.split('_')[0])).size;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#kpiRoundsDone').textContent = String(roundsDone);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#kpiMatchesDone').textContent = String(matchCount);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const leader = ladder[0]?.teamId;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#kpiTopTeam').textContent = leader ? `Team ${leader}` : '—';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const mostSets = ladder.slice().sort((a,b)=&gt;b.setsWon-a.setsWon)[0]?.teamId;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#kpiMostSets').textContent = mostSets ? `Team ${mostSets}` : '—';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>renderFinalsBracket(ladder);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderFinalsBracket(ladderRows){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const host = $('#finalsBracket');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const top4 = ladderRows.slice(0,4);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const t1 = top4[0]?.teamId, t2 = top4[1]?.teamId, t3 = top4[2]?.teamId, t4 = top4[3]?.teamId;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid" style="grid-template-columns:1fr; gap:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="badge"&gt;Qualifying (1 v 2)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="margin-top:6px"&gt;&lt;b&gt;${teamLabel(t1)}&lt;/b&gt; vs &lt;b&gt;${teamLabel(t2)}&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted"&gt;04-Jun-26&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="badge"&gt;Elimination (3 v 4)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="margin-top:6px"&gt;&lt;b&gt;${teamLabel(t3)}&lt;/b&gt; vs &lt;b&gt;${teamLabel(t4)}&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted"&gt;04-Jun-26&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="badge"&gt;Preliminary&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="muted" style="margin-top:6px"&gt;Loser (1v2) vs Winner (3v4)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted"&gt;11-Jun-26&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="bd"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="badge good"&gt;Grand Final&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="muted" style="margin-top:6px"&gt;Winner (1v2) vs Winner (Prelim)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted"&gt;18-Jun-26&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function getNextRound(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const round of rounds){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let allDone = true;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>round.matches.forEach((m,idx)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const [a,b] = m;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (b == null) return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const id = matchId(round.r, idx);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!RESULTS[id]) allDone = false;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!allDone) return round;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return null;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderHome(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const next = getNextRound();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!next){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#nextRoundPill').textContent = 'All rounds complete';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#nextRoundDate').textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#nextRoundMatches').innerHTML = '&lt;div class="muted"&gt;No upcoming round found.&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#nextRoundPill').textContent = `Round ${next.r}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#nextRoundDate').textContent = next.date;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const list = next.matches.map((m,idx)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [a,b] = m;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (b == null) return `&lt;div class="row" style="justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;&lt;b&gt;${teamLabel(a)}&lt;/b&gt;&lt;/div&gt;&lt;div class="muted"&gt;Bye&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const id = matchId(next.r, idx);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const res = RESULTS[id];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const summary = res ? `${res.aSets}–${res.bSets}` : 'Not played';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return `&lt;div class="row" style="justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;&lt;b&gt;${teamLabel(a)}&lt;/b&gt; &lt;span class="muted"&gt;vs&lt;/span&gt; &lt;b&gt;${teamLabel(b)}&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="muted"&gt;${summary}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}).join('');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#nextRoundMatches').innerHTML = `&lt;div&gt;${list}&lt;/div&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const all = Object.entries(RESULTS)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.map(([k,v])=&gt;({k,v}))</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.filter(x=&gt;x.v &amp;&amp; x.v.a!=null &amp;&amp; x.v.b!=null)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.sort((x,y)=&gt;(y.v.ts||0)-(x.v.ts||0))</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.slice(0,6);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!all.length){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#latestResults').innerHTML = '&lt;div class="muted"&gt;No results recorded yet.&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#latestResults').innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Round&lt;/th&gt;&lt;th&gt;Match&lt;/th&gt;&lt;th class="right"&gt;Sets&lt;/th&gt;&lt;th class="right"&gt;Points&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>${all.map(x=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [rPart] = x.k.split('_');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const r = Number(rPart.replace('r',''));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const round = rounds.find(rr=&gt;rr.r===r);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const {a,b,aSets,bSets} = x.v;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const {aPts,bPts} = calcNightPoints(aSets,bSets);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return `</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;R${r} &lt;span class="muted"&gt;${round?.date || ''}&lt;/span&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;${teamLabel(a)} vs ${teamLabel(b)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;&lt;b&gt;${aSets}–${bSets}&lt;/b&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td class="right"&gt;&lt;span class="muted"&gt;${aPts}–${bPts}&lt;/span&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Results entry (dropdowns + modal)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function populateRoundSelect(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const rs = $('#roundSelect');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const rj = $('#roundJump');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rs.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rj.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rounds.forEach(r=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const opt = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt.value = String(r.r);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt.textContent = `Round ${r.r} — ${r.date}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rs.appendChild(opt);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const opt2 = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt2.value = String(r.r);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt2.textContent = `Round ${r.r}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rj.appendChild(opt2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function populateMatchSelect(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const r = Number($('#roundSelect').value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const round = rounds.find(x=&gt;x.r===r);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ms = $('#matchSelect');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ms.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>round.matches.forEach((m,idx)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [a,b] = m;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const opt = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opt.value = String(idx);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (b == null) opt.textContent = `${teamLabel(a)} — Bye`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else opt.textContent = `${teamLabel(a)} vs ${teamLabel(b)}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ms.appendChild(opt);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>renderResultSummary();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function renderResultSummary(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const r = Number($('#roundSelect').value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const idx = Number($('#matchSelect').value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const round = rounds.find(x=&gt;x.r===r);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const [a,b] = round.matches[idx];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const host = $('#resultSummary');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (b == null){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>host.innerHTML = `&lt;div class="muted"&gt;This slot is a Bye for &lt;b&gt;${teamLabel(a)}&lt;/b&gt;.&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#btnEdit').disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnEdit').disabled = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const id = matchId(r, idx);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const res = RESULTS[id];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!res){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>host.innerHTML = `&lt;div class="muted"&gt;No result saved yet.&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const {aSets,bSets} = res;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const {aPts,bPts} = calcNightPoints(aSets,bSets);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sum = Number(aSets)+Number(bSets);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const badge = sum === 6 ? `&lt;span class="badge good"&gt;Recorded&lt;/span&gt;` : `&lt;span class="badge warn"&gt;Saved (check)&lt;/span&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>host.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>${badge}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="margin-top:8px"&gt;&lt;b&gt;${teamLabel(a)}&lt;/b&gt; ${aSets}–${bSets} &lt;b&gt;${teamLabel(b)}&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="muted" style="margin-top:4px"&gt;Points: ${aPts}–${bPts}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn" id="btnQuickEdit"&gt;Edit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnQuickEdit')?.addEventListener('click', openModalForSelected);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function openModalForSelected(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const r = Number($('#roundSelect').value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const idx = Number($('#matchSelect').value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const round = rounds.find(x=&gt;x.r===r);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const [a,b] = round.matches[idx];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (b == null) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const id = matchId(r, idx);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const existing = RESULTS[id];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#modalRoundBadge').textContent = `Round ${r}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#modalTitle').textContent = `${teamLabel(a)} vs ${teamLabel(b)}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#modalSub').textContent = round.date;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#aLabel').textContent = teamLabel(a);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#bLabel').textContent = teamLabel(b);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#aSets').value = existing ? String(existing.aSets) : '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#bSets').value = existing ? String(existing.bSets) : '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnDelete').disabled = !existing;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const modal = $('#resultModal');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>modal.dataset.matchKey = id;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>modal.dataset.a = String(a);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>modal.dataset.b = String(b);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>recalcModal();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>modal.showModal();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function recalcModal(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const aSets = Number($('#aSets').value || 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bSets = Number($('#bSets').value || 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const {aPts,bPts} = calcNightPoints(aSets,bSets);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sum = aSets + bSets;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#calcPoints').innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="muted"&gt;${$('#aLabel').textContent}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;b&gt;${aPts}&lt;/b&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="row" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="muted"&gt;${$('#bLabel').textContent}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;b&gt;${bPts}&lt;/b&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!($('#aSets').value || $('#bSets').value)){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#sumWarning').innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (sum !== 6){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#sumWarning').innerHTML = `&lt;div class="badge warn"&gt;Heads up: ${aSets} + ${bSets} = ${sum} (expected 6)&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('#sumWarning').innerHTML = `&lt;div class="badge good"&gt;Looks good: totals 6 sets&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Navigation</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function setView(name){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$$('.tab').forEach(t=&gt;t.setAttribute('aria-selected', String(t.dataset.view===name)));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$$('.view').forEach(v=&gt;v.hidden = true);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$(`#view-${name}`).hidden = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='fixtures') renderFixtures();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='ladder') renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='home') { renderHome(); renderLadder(); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='teams') renderTeams();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='finals') renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name==='results') { populateMatchSelect(); renderResultSummary(); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Init</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// -----------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function init(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>populateRoundSelect();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$$('.tab').forEach(btn=&gt;btn.addEventListener('click', ()=&gt;setView(btn.dataset.view)));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#roundSelect').addEventListener('change', populateMatchSelect);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#matchSelect').addEventListener('change', renderResultSummary);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnEdit').addEventListener('click', openModalForSelected);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnClose').addEventListener('click', ()=&gt;$('#resultModal').close());</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#aSets').addEventListener('input', recalcModal);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#bSets').addEventListener('input', recalcModal);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnSave').addEventListener('click', async ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modal = $('#resultModal');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const id = modal.dataset.matchKey;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const a = Number(modal.dataset.a);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const b = Number(modal.dataset.b);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const aSets = Number($('#aSets').value || 0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bSets = Number($('#bSets').value || 0);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const payload = { a, b, aSets, bSets, ts: Date.now() };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// optimistic update</p>
+<p class="p1"><span class="Apple-converted-space">        </span>RESULTS[id] = payload;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>modal.close();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderResultSummary();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderFixtures();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderHome();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// persist</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (backendReady()) await backendUpsert(id, payload);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert(e?.message || 'Save failed');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnDelete').addEventListener('click', async ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modal = $('#resultModal');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const id = modal.dataset.matchKey;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>delete RESULTS[id];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>modal.close();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderResultSummary();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderFixtures();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderHome();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (backendReady()) await backendDelete(id);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert(e?.message || 'Delete failed');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnReset').addEventListener('click', async ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ok = confirm('Reset ALL results for everyone (Google Sheet)?');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!ok) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>RESULTS = {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderFixtures();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderHome();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderResultSummary();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (backendReady()) await backendResetAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert(e?.message || 'Reset failed');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnPrint').addEventListener('click', ()=&gt;window.print());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnExport').addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const blob = new Blob([JSON.stringify(RESULTS, null, 2)], {type:'application/json'});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const url = URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const a = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a.href = url;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a.download = 'tnc_autumn_2026_results.json';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.body.appendChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a.click();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a.remove();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#importFile').addEventListener('change', async (e)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const f = e.target.files?.[0];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!f) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const txt = await f.text();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const obj = JSON.parse(txt);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>RESULTS = obj || {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderLadder();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderFixtures();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderHome();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderResultSummary();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert('Imported results into this browser. (This does not push to Sheets automatically.)');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch(err){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert('Could not import. Make sure it is a valid JSON export from this site.');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.target.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#btnGo').addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const r = Number($('#roundJump').value);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const el = document.getElementById(`round-${r}`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (el) el.scrollIntoView({behavior:'smooth', block:'start'});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Load results from Sheets if configured</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (backendReady()) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>RESULTS = await backendGetAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>console.warn(e);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert('Could not load from Google Sheets. The site will still work, but won\'t be shared until configured.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// initial render</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setView('home');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// default selects</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#roundSelect').value = '1';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>populateMatchSelect();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>init();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
