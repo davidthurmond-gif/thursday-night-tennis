@@ -1,286 +1,1071 @@
-const API_KEY = ""; // optional: set to a secret string
-const SHEET_APPROVED = "Approved";
-const SHEET_PENDING  = "Pending";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thursday Night Competition — Autumn 2026</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121a33; --muted:#93a4c7; --text:#e9eeff;
+      --accent:#7dd3fc; --accent2:#a78bfa; --good:#34d399; --warn:#fbbf24; --bad:#fb7185;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(125,211,252,.25), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(167,139,250,.22), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,16,32,.75); border-bottom:1px solid var(--border); z-index:10}
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 18px}
+    .top{display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:wrap}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:40px; height:40px; border-radius:12px; background: linear-gradient(135deg, rgba(125,211,252,.9), rgba(167,139,250,.9)); box-shadow: var(--shadow)}
+    h1{font-size:18px; margin:0}
+    .sub{font-size:12px; color:var(--muted); margin-top:2px}
 
-function doGet(e) {
-  const action = (e.parameter.action || "").toLowerCase();
-  const key = e.parameter.key || "";
-  if (API_KEY && key !== API_KEY) return json({ ok:false, error:"Unauthorized" });
+    nav{display:flex; gap:8px; flex-wrap:wrap}
+    .tab{border:1px solid var(--border); background: rgba(18,26,51,.65); color:var(--text);
+      padding:10px 12px; border-radius:999px; cursor:pointer; font-size:13px;
+    }
+    .tab[aria-selected="true"]{border-color: rgba(125,211,252,.55); background: rgba(125,211,252,.12)}
 
-  if (action === "dump") {
-    return json({
-      ok:true,
-      approved: approvedAsObject_(),
-      pending: pendingAsArray_(),
-      meta: { serverTime: Date.now() }
-    });
-  }
+    main{padding:18px 0 60px}
+    .grid{display:grid; gap:14px}
+    .grid.two{grid-template-columns: 1.2fr .8fr}
+    @media (max-width: 900px){.grid.two{grid-template-columns:1fr}}
 
-  return json({ ok:false, error:"Unknown action" });
-}
+    .card{background: rgba(18,26,51,.75); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow)}
+    .card .hd{padding:14px 14px 0}
+    .card .bd{padding:14px}
+    .title{font-size:16px; margin:0 0 6px}
+    .muted{color:var(--muted)}
 
-function doPost(e) {
-  const body = safeJsonParse_(e.postData && e.postData.contents);
-  const action = (body.action || "").toLowerCase();
-  const key = body.key || "";
-  if (API_KEY && key !== API_KEY) return json({ ok:false, error:"Unauthorized" });
+    .pill{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:7px 10px; border-radius:999px; font-size:12px; color:var(--muted)}
+    .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
 
-  if (action === "submit") {
-    submitPending_(body);
-    return json({ ok:true });
-  }
+    table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:14px}
+    th,td{padding:10px 10px; border-bottom:1px solid var(--border); text-align:left; font-size:13px; vertical-align:top}
+    th{font-size:12px; color:var(--muted); font-weight:600}
+    tr:hover td{background: rgba(255,255,255,.03)}
+    .right{text-align:right}
+    .center{text-align:center}
 
-  if (action === "approve") {
-    approve_(body.submissionId);
-    return json({ ok:true });
-  }
+    .kpi{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+    @media (max-width: 760px){.kpi{grid-template-columns:repeat(2,1fr)}}
+    .k{padding:12px; border:1px solid var(--border); border-radius:14px; background: rgba(255,255,255,.03)}
+    .k .n{font-size:20px; font-weight:800}
+    .k .l{font-size:12px; color:var(--muted)}
 
-  if (action === "reject") {
-    reject_(body.submissionId);
-    return json({ ok:true });
-  }
+    .btn{border:1px solid var(--border); background: rgba(255,255,255,.04); color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer; font-size:13px}
+    .btn.primary{border-color: rgba(125,211,252,.55); background: rgba(125,211,252,.14)}
+    .btn.danger{border-color: rgba(251,113,133,.55); background: rgba(251,113,133,.10)}
+    .btn:disabled{opacity:.5; cursor:not-allowed}
 
-  if (action === "upsertapproved") {
-    upsertApproved_(body.matchKey, body.record);
-    return json({ ok:true });
-  }
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    select,input{background: rgba(11,16,32,.65); border:1px solid var(--border); color:var(--text);
+      padding:10px 12px; border-radius:12px; font-size:13px; outline:none
+    }
+    input[type="number"]{width:92px}
+    .hint{font-size:12px; color:var(--muted)}
 
-  if (action === "deleteapproved") {
-    deleteApproved_(body.matchKey);
-    return json({ ok:true });
-  }
+    .badge{display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--border); color:var(--muted)}
+    .badge.good{border-color: rgba(52,211,153,.45); color: rgba(52,211,153,.95)}
+    .badge.warn{border-color: rgba(251,191,36,.45); color: rgba(251,191,36,.95)}
+    .badge.bad{border-color: rgba(251,113,133,.45); color: rgba(251,113,133,.95)}
 
-  if (action === "resetapproved") {
-    resetApproved_();
-    return json({ ok:true });
-  }
+    .foot{margin-top:10px; font-size:12px; color:var(--muted)}
 
-  return json({ ok:false, error:"Unknown action" });
-}
+    /* modal */
+    dialog{border:none; border-radius:18px; padding:0; background: rgba(18,26,51,.98); color:var(--text); width:min(640px, 92vw); box-shadow: var(--shadow)}
+    dialog::backdrop{background: rgba(0,0,0,.55)}
+    .modal-hd{padding:14px 14px 0}
+    .modal-bd{padding:14px}
+    .modal-ft{padding:0 14px 14px; display:flex; justify-content:flex-end; gap:10px}
 
-/* ---------------- Sheets ---------------- */
+    @media print{
+      header{position:static; background:#fff; color:#000; border:none}
+      body{background:#fff; color:#000}
+      .card{box-shadow:none; background:#fff; border:1px solid #ccc}
+      .tab, .btn, .pill{display:none}
+      a{color:#000}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Thursday Night Competition</h1>
+          <div class="sub">Autumn 2026 • 7 teams • 14 rounds • 3-week break in April</div>
+        </div>
+      </div>
+      <nav aria-label="Sections">
+        <button class="tab" data-view="home" aria-selected="true">Home</button>
+        <button class="tab" data-view="teams">Teams</button>
+        <button class="tab" data-view="fixtures">Fixtures</button>
+        <button class="tab" data-view="ladder">Ladder</button>
+        <button class="tab" data-view="finals">Finals</button>
+        <button class="tab" data-view="rules">Rules</button>
+        <button class="tab" data-view="results">Enter Results</button>
+      </nav>
+    </div>
+  </header>
 
-function shApproved_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sh = ss.getSheetByName(SHEET_APPROVED);
-  if (!sh) sh = ss.insertSheet(SHEET_APPROVED);
-  const headers = ["matchKey","type","a","b","aSets","bSets","pairsJson","ts"];
-  ensureHeader_(sh, headers);
-  return sh;
-}
+  <main class="wrap">
+    <section id="view-home" class="view">
+      <div class="grid two">
+        <div class="card">
+          <div class="hd">
+            <div class="row" style="justify-content:space-between">
+              <h2 class="title">Next Round</h2>
+              <span class="pill"><span class="dot"></span><span id="nextRoundPill">Loading…</span></span>
+            </div>
+            <div class="muted" id="nextRoundDate" style="margin-top:4px"></div>
+          </div>
+          <div class="bd">
+            <div id="nextRoundMatches"></div>
+            <div class="foot">Tip: results are stored in your browser (localStorage). If you want a shared site later, we can wire this to Google Sheets or a tiny database.</div>
+          </div>
+        </div>
 
-function shPending_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sh = ss.getSheetByName(SHEET_PENDING);
-  if (!sh) sh = ss.insertSheet(SHEET_PENDING);
-  const headers = ["id","matchKey","type","round","date","stage","a","b","pairsJson","submittedBy","submittedAt","status"];
-  ensureHeader_(sh, headers);
-  return sh;
-}
+        <div class="card">
+          <div class="hd"><h2 class="title">Quick Stats</h2><div class="muted">Auto-updates as you enter results</div></div>
+          <div class="bd">
+            <div class="kpi">
+              <div class="k"><div class="n" id="kpiRoundsDone">0</div><div class="l">Rounds completed</div></div>
+              <div class="k"><div class="n" id="kpiMatchesDone">0</div><div class="l">Matches recorded</div></div>
+              <div class="k"><div class="n" id="kpiTopTeam">—</div><div class="l">Current leader</div></div>
+              <div class="k"><div class="n" id="kpiMostSets">—</div><div class="l">Most sets won</div></div>
+            </div>
+            <div style="margin-top:12px" class="row">
+              <button class="btn primary" id="btnPrint">Print schedule</button>
+              <button class="btn" id="btnExport">Export results (JSON)</button>
+              <label class="btn" for="importFile" style="cursor:pointer">Import results</label>
+              <input id="importFile" type="file" accept="application/json" style="display:none" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-function ensureHeader_(sh, headers) {
-  if (sh.getLastRow() === 0) sh.appendRow(headers);
-  const existing = sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0];
-  const existingSet = new Set(existing.filter(String));
-  // If headers differ (older sheet), rewrite row 1 to expected structure
-  const needsRewrite = headers.some((h,i)=>existing[i] !== h);
-  if (needsRewrite) {
-    sh.clear();
-    sh.appendRow(headers);
-  }
-}
+      <div class="card" style="margin-top:14px">
+        <div class="hd"><h2 class="title">Latest Results</h2><div class="muted">Most recent recorded matches</div></div>
+        <div class="bd" id="latestResults"></div>
+      </div>
+    </section>
 
-/* ---------------- Approved ---------------- */
+    <section id="view-teams" class="view" hidden>
+      <div class="card">
+        <div class="hd"><h2 class="title">Teams & Players</h2><div class="muted">4 players per team</div></div>
+        <div class="bd" id="teamsGrid"></div>
+      </div>
+    </section>
 
-function approvedAsObject_() {
-  const sh = shApproved_();
-  const values = sh.getDataRange().getValues();
-  if (values.length < 2) return {};
-  const idx = index_(values[0]);
-  const out = {};
-  for (let r=1; r<values.length; r++) {
-    const row = values[r];
-    const matchKey = row[idx.matchKey];
-    if (!matchKey) continue;
-    out[matchKey] = {
-      type: row[idx.type] || "regular",
-      a: Number(row[idx.a]),
-      b: Number(row[idx.b]),
-      aSets: Number(row[idx.aSets]),
-      bSets: Number(row[idx.bSets]),
-      pairs: safeJsonParse_(row[idx.pairsJson] || "[]") || [],
-      ts: Number(row[idx.ts]) || 0
-    };
-  }
-  return out;
-}
+    <section id="view-fixtures" class="view" hidden>
+      <div class="card">
+        <div class="hd">
+          <div class="row" style="justify-content:space-between">
+            <div>
+              <h2 class="title">Fixtures</h2>
+              <div class="muted">Rounds 1–14 + 3-week break</div>
+            </div>
+            <div class="row">
+              <span class="hint">Jump to round:</span>
+              <select id="roundJump"></select>
+              <button class="btn" id="btnGo">Go</button>
+            </div>
+          </div>
+        </div>
+        <div class="bd" id="fixturesList"></div>
+      </div>
+    </section>
 
-function upsertApproved_(matchKey, record) {
-  if (!matchKey) throw new Error("matchKey required");
-  const sh = shApproved_();
-  const values = sh.getDataRange().getValues();
-  const idx = index_(values[0]);
+    <section id="view-ladder" class="view" hidden>
+      <div class="card">
+        <div class="hd"><h2 class="title">Ladder</h2><div class="muted">Points = sets won + 2 bonus points if you win the night</div></div>
+        <div class="bd">
+          <div class="row" style="justify-content:space-between; margin-bottom:10px">
+            <span class="hint">Tie-breakers (in order): Points, Set Differential, Sets Won, Team #</span>
+            <button class="btn danger" id="btnReset">Reset all results</button>
+          </div>
+          <div id="ladderTable"></div>
+          <div class="foot">Note: if a night is tied 3–3, both teams get 3 points and <b>no</b> bonus points (unless you tell me otherwise).</div>
+        </div>
+      </div>
+    </section>
 
-  const rowData = [
-    matchKey,
-    record.type || "regular",
-    Number(record.a),
-    Number(record.b),
-    Number(record.aSets),
-    Number(record.bSets),
-    JSON.stringify(record.pairs || []),
-    Number(record.ts) || Date.now()
+    <section id="view-finals" class="view" hidden>
+      <div class="grid two">
+        <div class="card">
+          <div class="hd"><h2 class="title">Finals Bracket</h2><div class="muted">Based on ladder positions after Round 14</div></div>
+          <div class="bd" id="finalsBracket"></div>
+        </div>
+        <div class="card">
+          <div class="hd"><h2 class="title">Finals Dates</h2><div class="muted">As per the board</div></div>
+          <div class="bd">
+            <table>
+              <thead><tr><th>Stage</th><th>Date</th><th>Match</th></tr></thead>
+              <tbody>
+                <tr><td>Elimination</td><td>04-Jun-26</td><td>3rd vs 4th</td></tr>
+                <tr><td>Qualifying</td><td>04-Jun-26</td><td>1st vs 2nd</td></tr>
+                <tr><td>Preliminary</td><td>11-Jun-26</td><td>Loser (1v2) vs Winner (3v4)</td></tr>
+                <tr><td>Grand Final</td><td>18-Jun-26</td><td>Winner (1v2) vs Winner (Prelim)</td></tr>
+              </tbody>
+            </table>
+            <div class="foot">If you want, I can add automatic finals results entry too (same 6-set scoring).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-rules" class="view" hidden>
+      <div class="card">
+        <div class="hd"><h2 class="title">Rules</h2><div class="muted">As you described</div></div>
+        <div class="bd">
+          <ul style="margin:0; padding-left:18px; line-height:1.55">
+            <li>Each round: <b>two teams play 6 sets of doubles</b>.</li>
+            <li>Matchups are <b>paired by player numbers</b>: <b>1&2 vs 1&2</b>, <b>3&4 vs 3&4</b>, etc (total 6 sets).</li>
+            <li>Each set is <b>first to 6 games</b> (no super-tiebreak rules specified here).</li>
+            <li>Team points for the night:
+              <ul>
+                <li><b>1 point per set won</b> (0–6 points)</li>
+                <li><b>+2 bonus points</b> if your team wins the night (i.e., wins more sets overall)</li>
+              </ul>
+            </li>
+            <li>Example: if Team 4 beats Team 2 <b>4 sets to 2</b>, then Team 4 gets <b>6 points</b> and Team 2 gets <b>2 points</b>.</li>
+            <li>Assumption: if tied <b>3–3</b>, both teams get <b>3 points</b> and <b>no</b> bonus points.</li>
+          </ul>
+          <div class="foot">Want me to add extra rules (warm-up time, default scores, subs, rain-outs)? Just tell me and I’ll add a section.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-results" class="view" hidden>
+      <div class="card">
+        <div class="hd"><h2 class="title">Enter Results</h2><div class="muted">Record sets won for each match (0–6). Points calculate automatically.</div></div>
+        <div class="bd">
+          <div class="row" style="margin-bottom:10px">
+            <span class="hint">Round:</span>
+            <select id="roundSelect"></select>
+            <span class="hint">Match:</span>
+            <select id="matchSelect"></select>
+            <button class="btn primary" id="btnEdit">Edit / Enter</button>
+          </div>
+          <div id="resultSummary"></div>
+          <div class="foot">This is a simple offline-first setup. If you want everyone to submit results, we can connect this to Google Sheets and share a link.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <dialog id="resultModal">
+    <div class="modal-hd">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div class="badge" id="modalRoundBadge">Round</div>
+          <h3 class="title" id="modalTitle" style="margin-top:8px">Match</h3>
+          <div class="muted" id="modalSub"></div>
+        </div>
+        <button class="btn" id="btnClose">Close</button>
+      </div>
+    </div>
+    <div class="modal-bd">
+      <div class="row" style="align-items:flex-end; justify-content:space-between">
+        <div style="flex:1">
+          <div class="hint">Sets won (0–6)</div>
+          <div class="row" style="margin-top:8px">
+            <div>
+              <div class="hint" id="aLabel">Team A</div>
+              <input type="number" id="aSets" min="0" max="6" step="1" />
+            </div>
+            <div>
+              <div class="hint" id="bLabel">Team B</div>
+              <input type="number" id="bSets" min="0" max="6" step="1" />
+            </div>
+          </div>
+          <div class="hint" style="margin-top:8px">The two values should sum to <b>6</b>. If they don’t, we’ll still save it, but it’ll show a warning.</div>
+        </div>
+        <div style="min-width:210px">
+          <div class="hint">Calculated points</div>
+          <div style="margin-top:8px" id="calcPoints"></div>
+        </div>
+      </div>
+      <div style="margin-top:12px" id="sumWarning"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn danger" id="btnDelete">Delete result</button>
+      <button class="btn primary" id="btnSave">Save</button>
+    </div>
+  </dialog>
+
+<script>
+  // -----------------------------
+  // CONFIG — Google Sheets backend
+  // -----------------------------
+  // 1) Create a Google Sheet
+  // 2) Deploy the Apps Script (provided in chat) as a Web App
+  // 3) Paste the Web App URL below
+  // 4) (Optional) Set an API key (must match Apps Script)
+  const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz5gZx8MrqS7eqoQipHEsFfYMIiblAVqsASgbBe4bNfPXlbZkNNyfnrEM6yym8QJMbT/exec';
+  const API_KEY = ''; // optional
+
+  // -----------------------------
+  // Data (Teams, Fixtures)
+  // -----------------------------
+  const teams = {
+    1: { name: 'Team 1', players: ['Cooper Khalil','Simran Chawla','David Sutton','Chris Maniatakis'] },
+    2: { name: 'Team 2', players: ['Enrique Lopez','Craig Kitner','Josh Bury','Varun Sridhara'] },
+    3: { name: 'Team 3', players: ['Michael Rominger','David Ng','Cameron Rush','Alan Chumacero'] },
+    4: { name: 'Team 4', players: ['Jonathan Rogers','Rafa Bouzinelos','David Thurmond','Andrew Watson'] },
+    5: { name: 'Team 5', players: ['Chung Tan','Huss Shafai','Tom Maloney','Brett Kurz'] },
+    6: { name: 'Team 6', players: ['Vignesh Pakkiam','Eric Castricum','Stephen Saunders','Mark Findlay'] },
+    7: { name: 'Team 7', players: ['Chris Scott','Justin Hermann','Nick Teo','Dishit Devasia'] },
+  };
+
+  const rounds = [
+    { r:1,  date:'05-Feb-26', matches:[[1,6],[2,5],[3,4],[7,null]] },
+    { r:2,  date:'12-Feb-26', matches:[[4,2],[5,1],[6,7],[3,null]] },
+    { r:3,  date:'19-Feb-26', matches:[[2,7],[3,6],[4,5],[1,null]] },
+    { r:4,  date:'26-Feb-26', matches:[[5,3],[6,2],[7,1],[4,null]] },
+    { r:5,  date:'05-Mar-26', matches:[[3,1],[4,7],[5,6],[2,null]] },
+    { r:6,  date:'12-Mar-26', matches:[[6,4],[7,3],[1,2],[5,null]] },
+    { r:7,  date:'19-Mar-26', matches:[[7,5],[1,4],[2,3],[6,null]] },
+    { r:8,  date:'26-Mar-26', matches:[[1,6],[2,5],[3,4],[7,null]] },
+    { r:9,  date:'23-Apr-26', matches:[[4,2],[5,1],[6,7],[3,null]] },
+    { r:10, date:'30-Apr-26', matches:[[2,7],[3,6],[4,5],[1,null]] },
+    { r:11, date:'07-May-26', matches:[[5,3],[6,2],[7,1],[4,null]] },
+    { r:12, date:'14-May-26', matches:[[3,1],[4,7],[5,6],[2,null]] },
+    { r:13, date:'21-May-26', matches:[[6,4],[7,3],[1,2],[5,null]] },
+    { r:14, date:'28-May-26', matches:[[7,5],[1,4],[2,3],[6,null]] },
   ];
 
-  let foundRow = -1;
-  for (let r=1; r<values.length; r++) {
-    if (values[r][idx.matchKey] === matchKey) { foundRow = r+1; break; }
-  }
-
-  if (foundRow === -1) sh.appendRow(rowData);
-  else sh.getRange(foundRow,1,1,rowData.length).setValues([rowData]);
-}
-
-function deleteApproved_(matchKey) {
-  if (!matchKey) return;
-  const sh = shApproved_();
-  const values = sh.getDataRange().getValues();
-  const idx = index_(values[0]);
-  for (let r=values.length-1; r>=1; r--) {
-    if (values[r][idx.matchKey] === matchKey) { sh.deleteRow(r+1); return; }
-  }
-}
-
-function resetApproved_() {
-  const sh = shApproved_();
-  const last = sh.getLastRow();
-  if (last > 1) sh.deleteRows(2, last-1);
-}
-
-/* ---------------- Pending ---------------- */
-
-function pendingAsArray_() {
-  const sh = shPending_();
-  const values = sh.getDataRange().getValues();
-  if (values.length < 2) return [];
-  const idx = index_(values[0]);
-  const out = [];
-  for (let r=1; r<values.length; r++) {
-    const row = values[r];
-    if (!row[idx.id]) continue;
-    if ((row[idx.status] || "PENDING") !== "PENDING") continue;
-    out.push({
-      id: String(row[idx.id]),
-      matchKey: String(row[idx.matchKey]),
-      type: row[idx.type] || "regular",
-      round: Number(row[idx.round] || 0),
-      date: row[idx.date] || "",
-      stage: row[idx.stage] || "",
-      a: Number(row[idx.a]),
-      b: Number(row[idx.b]),
-      pairs: safeJsonParse_(row[idx.pairsJson] || "[]") || [],
-      submittedBy: row[idx.submittedBy] || "",
-      submittedAt: Number(row[idx.submittedAt]) || 0
-    });
-  }
-  // newest first
-  out.sort((x,y)=>(y.submittedAt||0)-(x.submittedAt||0));
-  return out;
-}
-
-function submitPending_(body) {
-  const sh = shPending_();
-  const id = Utilities.getUuid();
-  const row = [
-    id,
-    body.matchKey || "",
-    body.type || "regular",
-    body.round || "",
-    body.date || "",
-    body.stage || "",
-    Number(body.a),
-    Number(body.b),
-    JSON.stringify(body.pairs || []),
-    body.submittedBy || "Unknown",
-    Date.now(),
-    "PENDING"
+  const breaks = [
+    { date:'02-Apr-26', note:'No play (break)' },
+    { date:'09-Apr-26', note:'No play (break)' },
+    { date:'16-Apr-26', note:'No play (break)' },
   ];
-  sh.appendRow(row);
-}
 
-function approve_(submissionId) {
-  if (!submissionId) throw new Error("submissionId required");
-  const sh = shPending_();
-  const values = sh.getDataRange().getValues();
-  const idx = index_(values[0]);
+  // -----------------------------
+  // Backend I/O (Google Sheets)
+  // -----------------------------
+  // results shape:
+  // {
+  //   "r1_m0": {a:1,b:6,aSets:4,bSets:2, ts: 171...},
+  // }
+  let RESULTS = {};
 
-  for (let r=1; r<values.length; r++) {
-    if (String(values[r][idx.id]) !== String(submissionId)) continue;
+  function backendReady(){
+    return SHEETS_WEBAPP_URL && !SHEETS_WEBAPP_URL.includes('PASTE_YOUR_WEB_APP_URL');
+  }
 
-    // Move into Approved
-    const matchKey = String(values[r][idx.matchKey]);
-    const type = values[r][idx.type] || "regular";
-    const a = Number(values[r][idx.a]);
-    const b = Number(values[r][idx.b]);
-    const pairs = safeJsonParse_(values[r][idx.pairsJson] || "[]") || [];
-    const sets = sumSetsFromPairs_(pairs);
+  async function backendGetAll(){
+    if (!backendReady()) return {};
+    const url = new URL(SHEETS_WEBAPP_URL);
+    url.searchParams.set('action','all');
+    if (API_KEY) url.searchParams.set('key', API_KEY);
+    const res = await fetch(url.toString(), { method:'GET' });
+    if (!res.ok) throw new Error('Could not load results from Sheets');
+    return await res.json();
+  }
 
-    upsertApproved_(matchKey, {
-      type, a, b,
-      aSets: sets.aSets,
-      bSets: sets.bSets,
-      pairs,
-      ts: Date.now()
+  async function backendUpsert(matchKey, payload){
+    if (!backendReady()) throw new Error('Sheets backend not configured');
+    const res = await fetch(SHEETS_WEBAPP_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ action:'upsert', key: API_KEY || undefined, matchKey, ...payload })
+    });
+    if (!res.ok) throw new Error('Could not save result to Sheets');
+    return await res.json();
+  }
+
+  async function backendDelete(matchKey){
+    if (!backendReady()) throw new Error('Sheets backend not configured');
+    const res = await fetch(SHEETS_WEBAPP_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ action:'delete', key: API_KEY || undefined, matchKey })
+    });
+    if (!res.ok) throw new Error('Could not delete result from Sheets');
+    return await res.json();
+  }
+
+  async function backendResetAll(){
+    if (!backendReady()) throw new Error('Sheets backend not configured');
+    const res = await fetch(SHEETS_WEBAPP_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ action:'reset', key: API_KEY || undefined })
+    });
+    if (!res.ok) throw new Error('Could not reset results in Sheets');
+    return await res.json();
+  }
+
+  // -----------------------------
+  // Scoring
+  // -----------------------------
+  // Tie rule confirmed: NO bonus for ties.
+  function calcNightPoints(aSets, bSets){
+    aSets = Number(aSets); bSets = Number(bSets);
+    let aPts = aSets;
+    let bPts = bSets;
+    if (aSets > bSets) aPts += 2;
+    else if (bSets > aSets) bPts += 2;
+    return { aPts, bPts };
+  }
+
+  function teamLabel(id){
+    if (id == null) return 'Bye';
+    return teams[id]?.name ?? `Team ${id}`;
+  }
+
+  // -----------------------------
+  // Ladder calculation
+  // -----------------------------
+  function buildLadder(results){
+    const base = {};
+    for (const id of Object.keys(teams)){
+      base[id] = {
+        teamId: Number(id),
+        played: 0,
+        points: 0,
+        setsWon: 0,
+        setsLost: 0,
+        bonusWins: 0,
+        nightsWon: 0,
+        nightsLost: 0,
+        nightsTied: 0,
+      };
+    }
+
+    for (const k of Object.keys(results)){
+      const m = results[k];
+      if (!m || m.a == null || m.b == null) continue; // ignore byes
+      const A = base[m.a];
+      const B = base[m.b];
+      if (!A || !B) continue;
+
+      const aSets = Number(m.aSets);
+      const bSets = Number(m.bSets);
+
+      A.played += 1;
+      B.played += 1;
+
+      A.setsWon += aSets;
+      A.setsLost += bSets;
+      B.setsWon += bSets;
+      B.setsLost += aSets;
+
+      const {aPts, bPts} = calcNightPoints(aSets, bSets);
+      A.points += aPts;
+      B.points += bPts;
+
+      if (aSets > bSets){ A.bonusWins += 1; A.nightsWon += 1; B.nightsLost += 1; }
+      else if (bSets > aSets){ B.bonusWins += 1; B.nightsWon += 1; A.nightsLost += 1; }
+      else { A.nightsTied += 1; B.nightsTied += 1; }
+    }
+
+    const rows = Object.values(base);
+    rows.sort((x,y)=>{
+      const dx = y.points - x.points; if (dx) return dx;
+      const sd = (y.setsWon - y.setsLost) - (x.setsWon - x.setsLost); if (sd) return sd;
+      const sw = y.setsWon - x.setsWon; if (sw) return sw;
+      return x.teamId - y.teamId;
     });
 
-    // Mark submission approved
-    sh.getRange(r+1, idx.status+1).setValue("APPROVED");
-    return;
+    return rows;
   }
-  throw new Error("Submission not found");
-}
 
-function reject_(submissionId) {
-  if (!submissionId) throw new Error("submissionId required");
-  const sh = shPending_();
-  const values = sh.getDataRange().getValues();
-  const idx = index_(values[0]);
+  // -----------------------------
+  // UI helpers
+  // -----------------------------
+  const $ = (sel)=>document.querySelector(sel);
+  const $$ = (sel)=>Array.from(document.querySelectorAll(sel));
 
-  for (let r=1; r<values.length; r++) {
-    if (String(values[r][idx.id]) !== String(submissionId)) continue;
-    sh.getRange(r+1, idx.status+1).setValue("REJECTED");
-    return;
+  function matchId(roundNum, matchIndex){
+    return `r${roundNum}_m${matchIndex}`;
   }
-  throw new Error("Submission not found");
-}
 
-/* ---------------- Shared helpers ---------------- */
-
-function sumSetsFromPairs_(pairs){
-  let aSets = 0, bSets = 0;
-  for (const p of pairs){
-    const a = Number(p.aGames);
-    const b = Number(p.bGames);
-    if (a === 6 && b !== 6) aSets++;
-    else if (b === 6 && a !== 6) bSets++;
+  function renderTeams(){
+    const host = $('#teamsGrid');
+    const ids = Object.keys(teams).map(Number).sort((a,b)=>a-b);
+    host.innerHTML = `
+      <div class="grid" style="grid-template-columns:repeat(2,1fr); gap:14px">
+        ${ids.map(id=>{
+          const t = teams[id];
+          return `
+            <div class="card" style="background:rgba(255,255,255,.03); border-radius:14px; box-shadow:none">
+              <div class="bd">
+                <div class="row" style="justify-content:space-between; align-items:flex-start">
+                  <div>
+                    <div class="badge">#${id}</div>
+                    <h3 class="title" style="margin:8px 0 0">${t.name}</h3>
+                  </div>
+                </div>
+                <div style="margin-top:10px">
+                  ${t.players.map((p,i)=>`<div class="row" style="justify-content:space-between"><span class="muted">Player ${i+1}</span><span>${p}</span></div>`).join('')}
+                </div>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
   }
-  return {aSets, bSets};
-}
 
-function index_(headerRow){
-  const idx = {};
-  headerRow.forEach((h,i)=>idx[String(h)] = i);
-  return idx;
-}
+  function renderFixtures(){
+    const results = RESULTS;
+    const host = $('#fixturesList');
+    host.innerHTML = '';
 
-function safeJsonParse_(s){
-  try { return JSON.parse(s || "{}"); } catch(e) { return {}; }
-}
+    const breakCard = `
+      <div class="card" style="background:rgba(255,255,255,.03); box-shadow:none; border-radius:14px; margin-bottom:14px">
+        <div class="bd">
+          <div class="row" style="justify-content:space-between">
+            <div>
+              <div class="badge warn">3-week break</div>
+              <div class="muted" style="margin-top:6px">No play: ${breaks.map(b=>b.date).join(' • ')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    host.insertAdjacentHTML('beforeend', breakCard);
 
-function json(obj){
-  // for ok:true dumps, return obj directly
-  const payload = (obj && obj.ok && obj.approved !== undefined) ? obj : obj;
-  return ContentService
-    .createTextOutput(JSON.stringify(payload))
-    .setMimeType(ContentService.MimeType.JSON);
-}
+    for (const round of rounds){
+      const rows = round.matches.map((m,idx)=>{
+        const [a,b] = m;
+        if (b == null){
+          return `<tr><td>${teamLabel(a)}</td><td class="center">—</td><td>Bye</td><td class="right"><span class="muted">—</span></td></tr>`;
+        }
+        const id = matchId(round.r, idx);
+        const res = results[id];
+        const has = !!res;
+        const summary = has ? `${res.aSets}–${res.bSets}` : '—';
+        let badge = `<span class="badge">Not played</span>`;
+        if (has){
+          const sum = Number(res.aSets)+Number(res.bSets);
+          if (sum !== 6) badge = `<span class="badge warn">Saved (check)</span>`;
+          else badge = `<span class="badge good">Recorded</span>`;
+        }
+        return `
+          <tr>
+            <td>${teamLabel(a)}</td>
+            <td class="center">vs</td>
+            <td>${teamLabel(b)}</td>
+            <td class="right">${badge} <span class="muted" style="margin-left:8px">${summary}</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      host.insertAdjacentHTML('beforeend', `
+        <div class="card" id="round-${round.r}" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px; margin-bottom:14px">
+          <div class="bd">
+            <div class="row" style="justify-content:space-between; margin-bottom:10px">
+              <div>
+                <div class="badge">Round ${round.r}</div>
+                <div class="muted" style="margin-top:6px">${round.date}</div>
+              </div>
+              <button class="btn" data-open-round="${round.r}">Enter results</button>
+            </div>
+            <table>
+              <thead><tr><th>Home</th><th class="center"></th><th>Away</th><th class="right">Result</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        </div>
+      `);
+    }
+
+    $$('[data-open-round]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const r = Number(btn.getAttribute('data-open-round'));
+        setView('results');
+        $('#roundSelect').value = String(r);
+        populateMatchSelect();
+      });
+    });
+  }
+
+  function renderLadder(){
+    const ladder = buildLadder(RESULTS);
+    const host = $('#ladderTable');
+
+    host.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th class="right">#</th>
+            <th>Team</th>
+            <th class="right">P</th>
+            <th class="right">Pts</th>
+            <th class="right">Sets W</th>
+            <th class="right">Sets L</th>
+            <th class="right">Set Diff</th>
+            <th class="right">Nights W</th>
+            <th class="right">Nights L</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ladder.map((row,idx)=>{
+            const diff = row.setsWon - row.setsLost;
+            return `
+              <tr>
+                <td class="right">${idx+1}</td>
+                <td>${teams[row.teamId].name}</td>
+                <td class="right">${row.played}</td>
+                <td class="right"><b>${row.points}</b></td>
+                <td class="right">${row.setsWon}</td>
+                <td class="right">${row.setsLost}</td>
+                <td class="right">${diff}</td>
+                <td class="right">${row.nightsWon}</td>
+                <td class="right">${row.nightsLost}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+
+    // KPIs
+    const allRes = Object.values(RESULTS);
+    const matchCount = allRes.filter(m=>m && m.a!=null && m.b!=null).length;
+    const roundsDone = new Set(Object.keys(RESULTS).map(k=>k.split('_')[0])).size;
+    $('#kpiRoundsDone').textContent = String(roundsDone);
+    $('#kpiMatchesDone').textContent = String(matchCount);
+
+    const leader = ladder[0]?.teamId;
+    $('#kpiTopTeam').textContent = leader ? `Team ${leader}` : '—';
+
+    const mostSets = ladder.slice().sort((a,b)=>b.setsWon-a.setsWon)[0]?.teamId;
+    $('#kpiMostSets').textContent = mostSets ? `Team ${mostSets}` : '—';
+
+    renderFinalsBracket(ladder);
+  }
+
+  function renderFinalsBracket(ladderRows){
+    const host = $('#finalsBracket');
+    const top4 = ladderRows.slice(0,4);
+    const t1 = top4[0]?.teamId, t2 = top4[1]?.teamId, t3 = top4[2]?.teamId, t4 = top4[3]?.teamId;
+
+    host.innerHTML = `
+      <div class="grid" style="grid-template-columns:1fr; gap:12px">
+        <div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px">
+          <div class="bd">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div class="badge">Qualifying (1 v 2)</div>
+                <div style="margin-top:6px"><b>${teamLabel(t1)}</b> vs <b>${teamLabel(t2)}</b></div>
+              </div>
+              <div class="muted">04-Jun-26</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px">
+          <div class="bd">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div class="badge">Elimination (3 v 4)</div>
+                <div style="margin-top:6px"><b>${teamLabel(t3)}</b> vs <b>${teamLabel(t4)}</b></div>
+              </div>
+              <div class="muted">04-Jun-26</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px">
+          <div class="bd">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div class="badge">Preliminary</div>
+                <div class="muted" style="margin-top:6px">Loser (1v2) vs Winner (3v4)</div>
+              </div>
+              <div class="muted">11-Jun-26</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.02); box-shadow:none; border-radius:14px">
+          <div class="bd">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div class="badge good">Grand Final</div>
+                <div class="muted" style="margin-top:6px">Winner (1v2) vs Winner (Prelim)</div>
+              </div>
+              <div class="muted">18-Jun-26</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function getNextRound(){
+    for (const round of rounds){
+      let allDone = true;
+      round.matches.forEach((m,idx)=>{
+        const [a,b] = m;
+        if (b == null) return;
+        const id = matchId(round.r, idx);
+        if (!RESULTS[id]) allDone = false;
+      });
+      if (!allDone) return round;
+    }
+    return null;
+  }
+
+  function renderHome(){
+    const next = getNextRound();
+    if (!next){
+      $('#nextRoundPill').textContent = 'All rounds complete';
+      $('#nextRoundDate').textContent = '';
+      $('#nextRoundMatches').innerHTML = '<div class="muted">No upcoming round found.</div>';
+      return;
+    }
+    $('#nextRoundPill').textContent = `Round ${next.r}`;
+    $('#nextRoundDate').textContent = next.date;
+
+    const list = next.matches.map((m,idx)=>{
+      const [a,b] = m;
+      if (b == null) return `<div class="row" style="justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+        <div><b>${teamLabel(a)}</b></div><div class="muted">Bye</div>
+      </div>`;
+      const id = matchId(next.r, idx);
+      const res = RESULTS[id];
+      const summary = res ? `${res.aSets}–${res.bSets}` : 'Not played';
+      return `<div class="row" style="justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+        <div><b>${teamLabel(a)}</b> <span class="muted">vs</span> <b>${teamLabel(b)}</b></div>
+        <div class="muted">${summary}</div>
+      </div>`;
+    }).join('');
+
+    $('#nextRoundMatches').innerHTML = `<div>${list}</div>`;
+
+    const all = Object.entries(RESULTS)
+      .map(([k,v])=>({k,v}))
+      .filter(x=>x.v && x.v.a!=null && x.v.b!=null)
+      .sort((x,y)=>(y.v.ts||0)-(x.v.ts||0))
+      .slice(0,6);
+
+    if (!all.length){
+      $('#latestResults').innerHTML = '<div class="muted">No results recorded yet.</div>';
+      return;
+    }
+
+    $('#latestResults').innerHTML = `
+      <table>
+        <thead><tr><th>Round</th><th>Match</th><th class="right">Sets</th><th class="right">Points</th></tr></thead>
+        <tbody>
+          ${all.map(x=>{
+            const [rPart] = x.k.split('_');
+            const r = Number(rPart.replace('r',''));
+            const round = rounds.find(rr=>rr.r===r);
+            const {a,b,aSets,bSets} = x.v;
+            const {aPts,bPts} = calcNightPoints(aSets,bSets);
+            return `
+              <tr>
+                <td>R${r} <span class="muted">${round?.date || ''}</span></td>
+                <td>${teamLabel(a)} vs ${teamLabel(b)}</td>
+                <td class="right"><b>${aSets}–${bSets}</b></td>
+                <td class="right"><span class="muted">${aPts}–${bPts}</span></td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  // -----------------------------
+  // Results entry (dropdowns + modal)
+  // -----------------------------
+  function populateRoundSelect(){
+    const rs = $('#roundSelect');
+    const rj = $('#roundJump');
+    rs.innerHTML = '';
+    rj.innerHTML = '';
+    rounds.forEach(r=>{
+      const opt = document.createElement('option');
+      opt.value = String(r.r);
+      opt.textContent = `Round ${r.r} — ${r.date}`;
+      rs.appendChild(opt);
+
+      const opt2 = document.createElement('option');
+      opt2.value = String(r.r);
+      opt2.textContent = `Round ${r.r}`;
+      rj.appendChild(opt2);
+    });
+  }
+
+  function populateMatchSelect(){
+    const r = Number($('#roundSelect').value);
+    const round = rounds.find(x=>x.r===r);
+    const ms = $('#matchSelect');
+    ms.innerHTML = '';
+    round.matches.forEach((m,idx)=>{
+      const [a,b] = m;
+      const opt = document.createElement('option');
+      opt.value = String(idx);
+      if (b == null) opt.textContent = `${teamLabel(a)} — Bye`;
+      else opt.textContent = `${teamLabel(a)} vs ${teamLabel(b)}`;
+      ms.appendChild(opt);
+    });
+
+    renderResultSummary();
+  }
+
+  function renderResultSummary(){
+    const r = Number($('#roundSelect').value);
+    const idx = Number($('#matchSelect').value);
+    const round = rounds.find(x=>x.r===r);
+    const [a,b] = round.matches[idx];
+    const host = $('#resultSummary');
+
+    if (b == null){
+      host.innerHTML = `<div class="muted">This slot is a Bye for <b>${teamLabel(a)}</b>.</div>`;
+      $('#btnEdit').disabled = true;
+      return;
+    }
+    $('#btnEdit').disabled = false;
+
+    const id = matchId(r, idx);
+    const res = RESULTS[id];
+    if (!res){
+      host.innerHTML = `<div class="muted">No result saved yet.</div>`;
+      return;
+    }
+
+    const {aSets,bSets} = res;
+    const {aPts,bPts} = calcNightPoints(aSets,bSets);
+    const sum = Number(aSets)+Number(bSets);
+    const badge = sum === 6 ? `<span class="badge good">Recorded</span>` : `<span class="badge warn">Saved (check)</span>`;
+
+    host.innerHTML = `
+      <div class="row" style="justify-content:space-between">
+        <div>
+          ${badge}
+          <div style="margin-top:8px"><b>${teamLabel(a)}</b> ${aSets}–${bSets} <b>${teamLabel(b)}</b></div>
+          <div class="muted" style="margin-top:4px">Points: ${aPts}–${bPts}</div>
+        </div>
+        <button class="btn" id="btnQuickEdit">Edit</button>
+      </div>
+    `;
+    $('#btnQuickEdit')?.addEventListener('click', openModalForSelected);
+  }
+
+  function openModalForSelected(){
+    const r = Number($('#roundSelect').value);
+    const idx = Number($('#matchSelect').value);
+    const round = rounds.find(x=>x.r===r);
+    const [a,b] = round.matches[idx];
+    if (b == null) return;
+
+    const id = matchId(r, idx);
+    const existing = RESULTS[id];
+
+    $('#modalRoundBadge').textContent = `Round ${r}`;
+    $('#modalTitle').textContent = `${teamLabel(a)} vs ${teamLabel(b)}`;
+    $('#modalSub').textContent = round.date;
+    $('#aLabel').textContent = teamLabel(a);
+    $('#bLabel').textContent = teamLabel(b);
+
+    $('#aSets').value = existing ? String(existing.aSets) : '';
+    $('#bSets').value = existing ? String(existing.bSets) : '';
+
+    $('#btnDelete').disabled = !existing;
+
+    const modal = $('#resultModal');
+    modal.dataset.matchKey = id;
+    modal.dataset.a = String(a);
+    modal.dataset.b = String(b);
+
+    recalcModal();
+    modal.showModal();
+  }
+
+  function recalcModal(){
+    const aSets = Number($('#aSets').value || 0);
+    const bSets = Number($('#bSets').value || 0);
+    const {aPts,bPts} = calcNightPoints(aSets,bSets);
+    const sum = aSets + bSets;
+
+    $('#calcPoints').innerHTML = `
+      <div class="row" style="justify-content:space-between">
+        <span class="muted">${$('#aLabel').textContent}</span>
+        <b>${aPts}</b>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <span class="muted">${$('#bLabel').textContent}</span>
+        <b>${bPts}</b>
+      </div>
+    `;
+
+    if (!($('#aSets').value || $('#bSets').value)){
+      $('#sumWarning').innerHTML = '';
+      return;
+    }
+
+    if (sum !== 6){
+      $('#sumWarning').innerHTML = `<div class="badge warn">Heads up: ${aSets} + ${bSets} = ${sum} (expected 6)</div>`;
+    } else {
+      $('#sumWarning').innerHTML = `<div class="badge good">Looks good: totals 6 sets</div>`;
+    }
+  }
+
+  // -----------------------------
+  // Navigation
+  // -----------------------------
+  function setView(name){
+    $$('.tab').forEach(t=>t.setAttribute('aria-selected', String(t.dataset.view===name)));
+    $$('.view').forEach(v=>v.hidden = true);
+    $(`#view-${name}`).hidden = false;
+
+    if (name==='fixtures') renderFixtures();
+    if (name==='ladder') renderLadder();
+    if (name==='home') { renderHome(); renderLadder(); }
+    if (name==='teams') renderTeams();
+    if (name==='finals') renderLadder();
+    if (name==='results') { populateMatchSelect(); renderResultSummary(); }
+  }
+
+  // -----------------------------
+  // Init
+  // -----------------------------
+  async function init(){
+    populateRoundSelect();
+
+    $$('.tab').forEach(btn=>btn.addEventListener('click', ()=>setView(btn.dataset.view)));
+
+    $('#roundSelect').addEventListener('change', populateMatchSelect);
+    $('#matchSelect').addEventListener('change', renderResultSummary);
+    $('#btnEdit').addEventListener('click', openModalForSelected);
+
+    $('#btnClose').addEventListener('click', ()=>$('#resultModal').close());
+    $('#aSets').addEventListener('input', recalcModal);
+    $('#bSets').addEventListener('input', recalcModal);
+
+    $('#btnSave').addEventListener('click', async ()=>{
+      try{
+        const modal = $('#resultModal');
+        const id = modal.dataset.matchKey;
+        const a = Number(modal.dataset.a);
+        const b = Number(modal.dataset.b);
+        const aSets = Number($('#aSets').value || 0);
+        const bSets = Number($('#bSets').value || 0);
+
+        const payload = { a, b, aSets, bSets, ts: Date.now() };
+
+        // optimistic update
+        RESULTS[id] = payload;
+        modal.close();
+        renderResultSummary();
+        renderLadder();
+        renderFixtures();
+        renderHome();
+
+        // persist
+        if (backendReady()) await backendUpsert(id, payload);
+      } catch(e){
+        alert(e?.message || 'Save failed');
+      }
+    });
+
+    $('#btnDelete').addEventListener('click', async ()=>{
+      try{
+        const modal = $('#resultModal');
+        const id = modal.dataset.matchKey;
+        delete RESULTS[id];
+        modal.close();
+        renderResultSummary();
+        renderLadder();
+        renderFixtures();
+        renderHome();
+        if (backendReady()) await backendDelete(id);
+      } catch(e){
+        alert(e?.message || 'Delete failed');
+      }
+    });
+
+    $('#btnReset').addEventListener('click', async ()=>{
+      const ok = confirm('Reset ALL results for everyone (Google Sheet)?');
+      if (!ok) return;
+      try{
+        RESULTS = {};
+        renderLadder();
+        renderFixtures();
+        renderHome();
+        renderResultSummary();
+        if (backendReady()) await backendResetAll();
+      } catch(e){
+        alert(e?.message || 'Reset failed');
+      }
+    });
+
+    $('#btnPrint').addEventListener('click', ()=>window.print());
+
+    $('#btnExport').addEventListener('click', ()=>{
+      const blob = new Blob([JSON.stringify(RESULTS, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tnc_autumn_2026_results.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    $('#importFile').addEventListener('change', async (e)=>{
+      const f = e.target.files?.[0];
+      if (!f) return;
+      try{
+        const txt = await f.text();
+        const obj = JSON.parse(txt);
+        RESULTS = obj || {};
+        renderLadder();
+        renderFixtures();
+        renderHome();
+        renderResultSummary();
+        alert('Imported results into this browser. (This does not push to Sheets automatically.)');
+      } catch(err){
+        alert('Could not import. Make sure it is a valid JSON export from this site.');
+      } finally {
+        e.target.value = '';
+      }
+    });
+
+    $('#btnGo').addEventListener('click', ()=>{
+      const r = Number($('#roundJump').value);
+      const el = document.getElementById(`round-${r}`);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // Load results from Sheets if configured
+    try{
+      if (backendReady()) {
+        RESULTS = await backendGetAll();
+      }
+    } catch(e){
+      console.warn(e);
+      alert('Could not load from Google Sheets. The site will still work, but won\'t be shared until configured.');
+    }
+
+    // initial render
+    setView('home');
+
+    // default selects
+    $('#roundSelect').value = '1';
+    populateMatchSelect();
+  }
+
+  init();
+</script>
+</body>
+</html>
